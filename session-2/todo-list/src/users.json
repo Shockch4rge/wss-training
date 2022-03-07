@@ -1,0 +1,29 @@
+[
+    {
+        "name": "Leanne Graham",
+        "todos": [
+            {
+                "name": "Wash the dishes",
+                "category": "Misc",
+                "deadline": "Friday Mar 01 2022 20:20:59 GMT+0800",
+                "done": false
+            },
+            {
+                "name": "Buy groceries",
+                "category": "Misc",
+                "deadline": "Friday Mar 01 2022 20:20:59 GMT+0800",
+                "done": false
+            },
+            {
+                "name": "Finish homework",
+                "category": "Studying",
+                "deadline": "Friday Mar 01 2022 20:20:59 GMT+0800",
+                "done": false
+            }
+        ]
+    },
+    {
+        "name": "John Doe",
+        "todos": ["lol", "lol2", "lol3"]
+    }
+]

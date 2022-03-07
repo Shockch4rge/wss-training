@@ -1,0 +1,1 @@
+Exercises that have accumulated over all my World Skills training sessions. 
