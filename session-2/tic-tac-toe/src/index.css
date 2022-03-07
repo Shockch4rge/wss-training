@@ -1,0 +1,23 @@
+.cell {
+    padding: 0;
+    min-width: 200px;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    font-size: 100px;
+}
+
+.board {
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.player-x {
+    color: red;
+}
+
+.player-o {
+    color: blue;
+}

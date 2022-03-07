@@ -6,77 +6,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Todo-List</title>
         <link rel="stylesheet" href="./index.css" />
-        <link rel="stylesheet" href="./bootstrap.min.css" />
-        <script src="./jquery-3.6.0.min.js" defer></script>
-        <script src="./bootstrap.bundle.min.js" defer></script>
+        <link rel="stylesheet" href="../../assets/bootstrap.min.css" />
+        <script src="../../assets/jquery-3.6.0.min.js" defer></script>
+        <script src="../../assets/bootstrap.bundle.min.js" defer></script>
         <script src="./js/script.js" defer></script>
         <script src="./js/user.js" defer></script>
         <script src="./js/todo.js" defer></script>
     </head>
     <body onload="loadUsers()">
-        <div class="container border mt-5 mx-auto p-5">
+        <div class="border mt-5 mx-auto p-5">
             <h1 id="user-name" title="Click on a to-do to remove it!">To-Do List</h1>
 
-            <p id="logged-in-as"></p>
-
-            <div>
-                <div class="input-group input-group-sm mb-3" id="username-login">
-                    <input type="text" id="username-login-input" class="form-control" placeholder="Username" />
-                    <div class="input-group-append">
-                        <button onclick="loginUser()" class="btn btn-primary" type="button">Login</button>
-                    </div>
-                </div>
-                <div class="input-group input-group-sm mb-3" id="username-registration">
-                    <input
-                        type="text"
-                        id="username-register-input"
-                        class="form-control"
-                        placeholder="Username" />
-                    <div class="input-group-append">
-                        <button onclick="registerUser()" class="btn btn-primary btn-sm" type="button">
-                            Register
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <p class="baseline-middle">Active to-dos:</p>
-                <div class="dropdown ml-5">
-                    <button
-                        id="filter-menu-btn"
-                        class="btn btn-secondary btn-sm dropdown-toggle"
-                        type="button"
-                        data-toggle="dropdown"
-                        aria-expanded="false">
-                        Filter by
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="filter-menu-btn">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <ul id="todo-list"></ul>
-            </div>
-
-            <div>
-                <div class="input-group mb-3">
-                    <input type="text" id="todo-input" class="form-control" placeholder="Add a to-do here!" />
-                    <div class="input-group-append">
-                        <button onclick="addTodo()" class="btn btn-success" type="button">Add</button>
-                    </div>
-                </div>
-            </div>
-
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#todo-input-modal">
-                Create your to-do!
-            </button>
-
-            <div>
+            <div class="mt-3">
+                <button
+                    type="button"
+                    class="btn btn-success mb-2"
+                    data-toggle="modal"
+                    data-target="#todo-input-modal">
+                    Create a to-do!
+                </button>
                 <button onclick="removeAllTodos()" class="btn btn-danger">Remove all to-dos!</button>
             </div>
 
@@ -90,31 +38,47 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="todoInputLabel">Create your todo!</h5>
+                            <h5 class="modal-title" id="todoInputLabel">Create a todo!</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <label for="#todo-input-title">Title:</label>
-                            <input id="todo-input-text" type="text" class="form-control mb-2" />
-                            <label for="#todo-input-description">Description:</label>
-                            <textarea
-                                id="todo-input-description"
-                                type="text"
-                                class="form-control mb-2"
-                                aria-label="With textarea"></textarea>
+                            <div class="todo-modal-title">
+                                <label for="#todo-input-title">Title:</label>
+                                <input id="todo-input-title" type="text" class="form-control mb-2" required />
+                            </div>
 
-                            <label for="#todo-input-date">Deadline:</label>
-                            <input id="todo-input-date" type="date" class="form-control mb-2" />
-                            <input type="time" class="form-control" />
+                            <div class="todo-modal-description">
+                                <label for="#todo-input-description">Description:</label>
+                                <textarea
+                                    id="todo-input-description"
+                                    type="text"
+                                    class="form-control mb-2"
+                                    aria-label="With textarea"></textarea>
+                            </div>
+
+                            <div class="todo-modal-deadline">
+                                <label for="#todo-input-deadline">Deadline:</label>
+                                <input
+                                    id="todo-input-deadline"
+                                    type="datetime-local"
+                                    class="form-control mr-1 mb-2"
+                                    required />
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success">Create</button>
+                            <button onclick="addTodo()" type="button" class="btn btn-success">Create</button>
                         </div>
                     </div>
                 </div>
+            </div>
+            <!-- Modal -->
+
+            <div class="mt-5">
+                <h4>Active To-dos:</h4>
+                <div id="todo-list" ></div>
             </div>
         </div>
     </body>
