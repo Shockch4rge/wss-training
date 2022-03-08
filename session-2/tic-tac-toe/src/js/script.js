@@ -1,37 +1,46 @@
 const PLAYER_X = "X";
 const PLAYER_O = "O";
 
+const GameResult = {
+    WIN: "WIN",
+    DRAW: "DRAW",
+    UNFINISHED: "UNFINISHED",
+};
+
 // switch between player X and O
 let currentPlayer = PLAYER_X;
-// mutable variable to prevent tearing down and setting up click listeners multiple times
+// variable to prevent tearing down and setting up click listeners multiple times
 let isGameOver = false;
 
 const loadBoard = () => {
     $("#current-player").text(`The current player is ${currentPlayer}`);
     const cells = $(".cell").toArray();
 
-    cells.forEach(_cell => {
-        const cell = $(_cell);
-
-        cell.on("click", () => {
-            const cellText = cell.text();
-
-            if (cellText === "") {
-                $(cell.text(currentPlayer));
-
-                if (checkWinner()) {
-                    endGame();
-                    return;
-                }
-
-                changePlayer();
-            }
-        });
-    });
+    cells.forEach(cell => $(cell).on("click", () => handleCellClick($(cell))));
 };
 
-const checkWinner = () => {
+const handleCellClick = cell => {
+    const cellText = cell.text();
+
+    if (cellText === "") {
+        $(cell.text(currentPlayer));
+        const gameState = checkGameState()
+
+        if (gameState !== GameResult.UNFINISHED) {
+            endGame(gameState);
+            return;
+        }
+
+        changePlayer();
+    }
+};
+
+const checkGameState = () => {
     const cells = $(".cell").toArray();
+
+    if (cells.every(cell => $(cell).text() !== "")) {
+        return GameResult.DRAW;
+    }
 
     for (let i = 0; i < possibleWins.length; i++) {
         const [a, b, c] = possibleWins[i];
@@ -41,11 +50,11 @@ const checkWinner = () => {
             $(cells[a]).text() === $(cells[b]).text() &&
             $(cells[a]).text() === $(cells[c]).text()
         ) {
-            return true;
+            return GameResult.WIN;
         }
     }
 
-    return false;
+    return GameResult.UNFINISHED;
 };
 
 const changePlayer = () => {
@@ -54,7 +63,7 @@ const changePlayer = () => {
 };
 
 // uninitialise the cells' onclick event
-const endGame = () => {
+const endGame = gameResult => {
     const cells = $(".cell").toArray();
 
     cells.forEach(cell => {
@@ -62,7 +71,15 @@ const endGame = () => {
     });
 
     isGameOver = true;
-    alert(`Player ${currentPlayer} wins!`);
+
+    switch (gameResult) {
+        case GameResult.WIN:
+            alert(`Player ${currentPlayer} wins!`);
+            break;
+        case GameResult.DRAW:
+            alert("It's a draw!");
+            break;
+    }
 };
 
 // possible win combinations for tic-tac-toe
@@ -79,6 +96,8 @@ const possibleWins = [
 
 const resetBoard = () => {
     const cells = $(".cell").toArray();
+    currentPlayer = PLAYER_X;
+    $("#current-player").text(`The current player is ${currentPlayer}`);
 
     cells.forEach(cell => {
         $(cell).text("");
