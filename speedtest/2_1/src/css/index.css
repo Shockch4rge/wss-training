@@ -1,0 +1,27 @@
+.object {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation-name: into-square-and-back;
+    animation-delay: 1s;
+    animation-duration: 2s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+@keyframes into-square-and-back {
+    from {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: #3ce272;
+    }
+    to {
+        width: 100px;
+        height: 100px;
+        border-radius: 0%;
+        background-color: #23b3df;
+        
+    }
+}

@@ -1,0 +1,1 @@
+A speedtest challenge containing multiple questions of varying difficulty. The time given is 3 hours. 

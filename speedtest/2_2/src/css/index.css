@@ -1,0 +1,14 @@
+.greyscaled {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    transition: -webkit-filter, filter 1s;
+}
+
+.greyscaled:hover {
+    -webkit-filter: grayscale(0%);
+    filter: grayscale(0%);
+}
